@@ -77,17 +77,10 @@ public class IgniteConfigurationBuilder {
       cacheConfigs[i] = cacheConfiguration;
     }
 
-    String multiplier = memoryStorageSize.substring(0, memoryStorageSize.length() - 1);
-    String unit = memoryStorageSize.substring(memoryStorageSize.length() - 1, memoryStorageSize.length());
-
-    long memorySizeMax =
-            Long.parseLong(multiplier) * BytesRateLimiter.BIT_UNIT
-                    .valueOf(StringUtils.lowerCase(unit)).getNumberOfBytes();
-
     // Set max memory storage size
     DataStorageConfiguration storageCfg = new DataStorageConfiguration();
     storageCfg.getDefaultDataRegionConfiguration()
-            .setMaxSize(memorySizeMax)
+            .setMaxSize(Long.parseLong(memoryStorageSize))
             .setPersistenceEnabled(true);
     storageCfg.setStoragePath("/opt/storage");
     

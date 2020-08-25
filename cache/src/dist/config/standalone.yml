@@ -24,9 +24,8 @@ storeProviderConfig:
     cacheBackupCount: 1
     expirationTimeUnit: DAYS
     expirationTimeValue: 2
-    atomicSequenceReserveSize: 10000
-    offHeapStorageSize: 40g # 40GB
-    cacheMemoryMode : OFFHEAP_VALUES #https://ignite.apache.org/releases/1.9.0/javadoc/
+    atomicSequenceReserveSize: 15000
+    memoryStorageSize: 0.6g # 40GB
 
 authenticationConfig:
   tokens:

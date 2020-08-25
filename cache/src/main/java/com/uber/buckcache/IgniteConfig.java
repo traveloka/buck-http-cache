@@ -1,15 +1,13 @@
 package com.uber.buckcache;
 
-import java.util.List;
-import java.util.concurrent.TimeUnit;
-
-import javax.annotation.Nonnull;
-
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.apache.commons.lang3.builder.ToStringBuilder;
-import org.apache.ignite.cache.CacheMemoryMode;
 import org.apache.ignite.cache.CacheMode;
+
+import javax.annotation.Nonnull;
+import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 public class IgniteConfig {
 
@@ -28,13 +26,11 @@ public class IgniteConfig {
   @Nonnull
   private final Integer atomicSequenceReserveSize;
   @Nonnull
-  private final String offHeapStorageSize;
+  private final String memoryStorageSize;
   @Nonnull
   private final List<String> hostIPs;
   @Nonnull
   private final String dnsLookupAddress;
-  @Nonnull
-  private final CacheMemoryMode cacheMemoryMode;
 
   @JsonCreator
   public IgniteConfig(
@@ -45,10 +41,9 @@ public class IgniteConfig {
       @Nonnull @JsonProperty("expirationTimeUnit") TimeUnit expirationTimeUnit,
       @Nonnull @JsonProperty("expirationTimeValue") Long expirationTimeValue,
       @Nonnull @JsonProperty("atomicSequenceReserveSize") Integer atomicSequenceReserveSize,
-      @Nonnull @JsonProperty("offHeapStorageSize") String offHeapStorageSize,
+      @Nonnull @JsonProperty("memoryStorageSize") String memoryStorageSize,
       @Nonnull @JsonProperty("hostIPs") List<String> hostIPs,
-      @Nonnull @JsonProperty("dnsLookupAddress") String dnsLookupAddress,
-      @Nonnull @JsonProperty("cacheMemoryMode") CacheMemoryMode cacheMemoryMode) {
+      @Nonnull @JsonProperty("dnsLookupAddress") String dnsLookupAddress) {
     this.multicastIP = multicastIP;
     this.multicastPort = multicastPort;
     this.cacheMode = cacheMode;
@@ -56,18 +51,17 @@ public class IgniteConfig {
     this.expirationTimeUnit = expirationTimeUnit;
     this.expirationTimeValue = expirationTimeValue;
     this.atomicSequenceReserveSize = atomicSequenceReserveSize;
-    this.offHeapStorageSize = offHeapStorageSize;
+    this.memoryStorageSize = memoryStorageSize;
     this.hostIPs = hostIPs;
     this.dnsLookupAddress = dnsLookupAddress;
-    this.cacheMemoryMode = cacheMemoryMode;
   }
 
   public List<String> getHostIPs() {
     return hostIPs;
   }
 
-  public String getOffHeapStorageSize() {
-    return offHeapStorageSize;
+  public String getMemoryStorageSize() {
+    return memoryStorageSize;
   }
 
   public String getMulticastIP() {
@@ -96,10 +90,6 @@ public class IgniteConfig {
 
   public Integer getAtomicSequenceReserveSize() {
     return atomicSequenceReserveSize;
-  }
-
-  public CacheMemoryMode getCacheMemoryMode() {
-    return cacheMemoryMode;
   }
 
   public String getDnsLookupAddress() {

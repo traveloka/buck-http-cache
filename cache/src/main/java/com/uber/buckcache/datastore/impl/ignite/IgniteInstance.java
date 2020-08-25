@@ -16,10 +16,8 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import javax.cache.expiry.ExpiryPolicy;
-import org.apache.ignite.Ignite;
-import org.apache.ignite.IgniteAtomicSequence;
-import org.apache.ignite.IgniteCache;
-import org.apache.ignite.Ignition;
+
+import org.apache.ignite.*;
 import org.apache.ignite.cluster.ClusterMetrics;
 import org.apache.ignite.cluster.ClusterNode;
 import org.apache.ignite.configuration.IgniteConfiguration;
@@ -57,6 +55,7 @@ public class IgniteInstance {
     logger.info("isClientMode : {}", mode == CacheInstanceMode.CLIENT);
     Ignition.setClientMode(mode == CacheInstanceMode.CLIENT);
     ignite = Ignition.start(igniteConfiguration);
+    ignite.cluster().active(true);
 
     cacheKeys = ignite.cluster().ignite().getOrCreateCache(KEYS_CACHE_NAME);
     reverseCacheKeys = ignite.cluster().ignite().getOrCreateCache(KEYS_REVERSE_CACHE_NAME);

@@ -80,8 +80,6 @@ public class IgniteConfigurationBuilder {
     // Set max memory storage size
     DataStorageConfiguration storageCfg = new DataStorageConfiguration();
     storageCfg.getDefaultDataRegionConfiguration()
-            .setInitialSize(Long.parseLong(memoryStorageSize))
-            .setMaxSize(Long.parseLong(memoryStorageSize))
             .setPersistenceEnabled(true);
     storageCfg.setStoragePath("./storage");
     

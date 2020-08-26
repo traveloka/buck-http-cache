@@ -25,7 +25,6 @@ storeProviderConfig:
     expirationTimeUnit: DAYS
     expirationTimeValue: 2
     atomicSequenceReserveSize: 15000
-    memoryStorageSize: 536870912 # 512 mb (in bytes)
 
 authenticationConfig:
   tokens:

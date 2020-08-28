@@ -4,8 +4,6 @@ import com.google.common.base.Strings;
 import com.spotify.dns.DnsSrvResolver;
 import com.spotify.dns.DnsSrvResolvers;
 import com.spotify.dns.LookupResult;
-import com.uber.buckcache.utils.BytesRateLimiter;
-import org.apache.commons.lang3.StringUtils;
 import org.apache.ignite.cache.CacheMode;
 import org.apache.ignite.configuration.AtomicConfiguration;
 import org.apache.ignite.configuration.CacheConfiguration;
@@ -22,6 +20,8 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public class IgniteConfigurationBuilder {
+
+  private static final int WAL_SIZE = 128 * 1024 * 1024; // 128MB
 
   private IgniteConfiguration igniteConfiguration;
   private final DnsSrvResolver dnsResolver;
@@ -82,6 +82,7 @@ public class IgniteConfigurationBuilder {
     storageCfg.getDefaultDataRegionConfiguration()
             .setPersistenceEnabled(true);
     storageCfg.setStoragePath("./storage");
+    storageCfg.setWalSegmentSize(WAL_SIZE);
     
     igniteConfiguration.setCacheConfiguration(cacheConfigs);
     igniteConfiguration.setDataStorageConfiguration(storageCfg);

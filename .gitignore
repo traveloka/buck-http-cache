@@ -8,6 +8,7 @@ checkstyle*.xml
 configuration.yml
 target/
 storage/
+ignite/
 
 .classpath
 .settings/

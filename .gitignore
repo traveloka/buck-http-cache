@@ -5,7 +5,7 @@ local.properties
 build
 .DS_Store
 checkstyle*.xml
-*/production.yml
+cache/src/dist/config/production.yml
 target/
 storage/
 ignite/

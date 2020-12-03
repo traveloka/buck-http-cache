@@ -80,7 +80,8 @@ public class IgniteConfigurationBuilder {
     // You can set page size here. However, page size must not exceed the size of HDD/SDD block size. Default will be 4KB
     // In AWS, this is example of the block size for each EBS volume size. https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/volume_constraints.html
     storageCfg.getDefaultDataRegionConfiguration()
-            .setPersistenceEnabled(true);
+            .setPersistenceEnabled(true)
+            .setMaxSize(500L * 1024 * 1024); // Set Max Size to 500MB
     storageCfg.setStoragePath("./storage");
     storageCfg.setWriteThrottlingEnabled(true);
     

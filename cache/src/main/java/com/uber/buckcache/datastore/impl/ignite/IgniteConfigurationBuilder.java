@@ -20,9 +20,6 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public class IgniteConfigurationBuilder {
-
-  private static final int WAL_SIZE = 128 * 1024 * 1024; // 128MB
-
   private IgniteConfiguration igniteConfiguration;
   private final DnsSrvResolver dnsResolver;
 
@@ -82,7 +79,6 @@ public class IgniteConfigurationBuilder {
     storageCfg.getDefaultDataRegionConfiguration()
             .setPersistenceEnabled(true);
     storageCfg.setStoragePath("./storage");
-    storageCfg.setWalSegmentSize(WAL_SIZE);
     
     igniteConfiguration.setCacheConfiguration(cacheConfigs);
     igniteConfiguration.setDataStorageConfiguration(storageCfg);
